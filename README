@@ -20,7 +20,6 @@ on multiple nodes.
 
 Structure of Submission
 ***************************
-DivyaKiran_Kadiyala_p2/
 |- MPI/
    |- Makefile
    |- .c and .h and .pl files
