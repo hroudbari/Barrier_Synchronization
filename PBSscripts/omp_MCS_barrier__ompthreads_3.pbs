@@ -1,0 +1,21 @@
+#PBS -N cs6210-proj2__omp_MCS_barrier__ompthreads_3.pbs
+#PBS -l nodes=1:ppn=3
+#PBS -l pmem=1gb
+#PBS -l walltime=00:02:00
+#PBS -q pace-ice
+#PBS -j oe
+#PBS -o omp_MCS_barrier__ompthreads_3.out
+
+
+echo "Started on `/bin/hostname`"
+echo "Nodes chosen are:"
+cat $PBS_NODEFILE
+
+
+module load gcc/8.3.0
+export OMP_NUM_THREADS=3
+
+
+cd /storage/home/hpaceice1/dkadiyala3/project2/FINAL/omp_MCS_barrier/run1
+g++ -g -Wall -fopenmp omp_MCS_barrier.cpp -o omp_MCS_barrier__ompthreads_3
+./omp_MCS_barrier__ompthreads_3 3 

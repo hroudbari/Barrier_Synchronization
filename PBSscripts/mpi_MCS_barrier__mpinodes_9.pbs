@@ -1,0 +1,21 @@
+#PBS -N cs6210-proj2__mpi_MCS_barrier__mpinodes_9.pbs
+#PBS -l nodes=9:ppn=1
+#PBS -l pmem=1gb
+#PBS -l walltime=00:10:00
+#PBS -q pace-ice
+#PBS -j oe
+#PBS -o mpi_MCS_barrier__mpinodes_9.out
+
+
+echo "Started on `/bin/hostname`"
+echo "Nodes chosen are:"
+cat $PBS_NODEFILE
+
+
+module load gcc/8.3.0
+module load mvapich2/2.3.2
+
+
+cd /storage/home/hpaceice1/dkadiyala3/project2/FINAL/mpi_MCS_barrier/run1
+mpic++ -g -Wall mpi_MCS_barrier.cpp -o mpi_MCS_barrier__mpinodes_9
+mpirun -np 9 ./mpi_MCS_barrier__mpinodes_9

@@ -1,0 +1,70 @@
+***********************************
+Project 2 - Barrier Synchronization
+***********************************
+
+Date   : 10/17/20
+Authors:
+		Hamed Seyedroudbari
+		Divya Kiran Kadiyala
+
+Project Description
+***************************
+In this project, we implemented four different barriers in C++, two of which 
+were implemented in OpenMP to synchronize between threads on the same node, 
+and the other two were implemented using the MPI library to synchronize between 
+MPI processes running on different nodes. After verifying the functionality of 
+each barrier, we combined an OpenMP barrier and an MPI barrier to develop a 
+combined barrier to synchronize all the threads across MPI processes and threads
+on multiple nodes.
+***************************
+
+Structure of Submission
+***************************
+DivyaKiran_Kadiyala_p2/
+|- MPI/
+   |- Makefile
+   |- .c and .h and .pl files
+|- OpenMP/
+   |- Makefile
+   |- .c and .h and .pl files
+|- Combined/
+   |- Makefile
+   |- .c and .h and .pl files
+|- README
+|- Write up (PDF)
+|- Data/
+  |- all experimental data
+|- PBSscripts/
+  |- all PBS scripts
+
+
+Instructions to Compile & Run
+*******************************
+
+For each barrier, please follow the procedure outlined below:
+
+1. Unzip the submitted zip file
+2. Navigate to ~/DivyaKiran_Kadiyala_p2/<barrier_name>
+3. "make <barrier_name>" to compile the barrier code.
+
+		eg: make omp_MCS_barrier or
+			make mpi_MCS_barrier
+
+4. To Run the barrier on PACE-ICE server:
+   
+  If you want to run all the test configurations for a barrier, please follow these steps:
+
+	  1. Navigate to ~/DivyaKiran_Kadiyala_p2/<barrier_name> folder and launch ./run_<barrier_name>.pl
+     	 This perl script would generate all the required .pbs scripts and launches them on the PACE-ICE cluster.
+	 	 Once the runs are completed, it would generate a final CSV as well.
+
+  But, if you want to run a specific barrier configuration, then please follow the below steps:
+
+  	1. Navigate to ~/DivyaKiran_Kadiyala_p2/PBSscripts
+  	2. Copy .pbs file into barrier folder which you would like to test (i.e. ~/DivyaKiran_Kadiyala_p2/<barrier_name>)
+  	3. Run qsub <file_name>.pbs to submit job for scheduling on PACE-ICE server.
+  	4. Run qstat for status of the submitted jobs.
+  	5. Once job is complete it will generate *.out and *.csv file.
+	6. open ".csv" file to view results.
+
+***************************

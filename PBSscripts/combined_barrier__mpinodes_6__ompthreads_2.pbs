@@ -1,0 +1,22 @@
+#PBS -N cs6210-proj2__combined_barrier__mpinodes_6__ompthreads_2.pbs
+#PBS -l nodes=6:ppn=2
+#PBS -l pmem=1gb
+#PBS -l walltime=02:10:00
+#PBS -q pace-ice
+#PBS -j oe
+#PBS -o combined_barrier__mpinodes_6__ompthreads_2.out
+
+
+echo "Started on `/bin/hostname`"
+echo "Nodes chosen are:"
+cat $PBS_NODEFILE
+
+
+module load gcc/8.3.0
+module load mvapich2/2.3.2
+export OMP_NUM_THREADS=2
+
+
+cd /storage/home/hpaceice1/dkadiyala3/project2/FINAL/mpi_dissemination_omp_sense_reverse_barrier/temp
+mpic++ -g -Wall -fopenmp -lgomp combined_barrier.cpp -o combined_barrier__mpinodes_6__ompthreads_2
+mpirun -np 6 ./combined_barrier__mpinodes_6__ompthreads_2 2
